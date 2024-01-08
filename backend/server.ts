@@ -4,6 +4,9 @@ import morgan from 'morgan';
 import dotenv from "dotenv";
 import connectDB from "./config/db";
 
+// Routes
+import userRoutes from "../routes/userRoutes";
+
 const PORT = process.env.PORT || 4000;
 const app: Express = express();
 
@@ -20,6 +23,8 @@ connectDB();
 app.get("/", (req: Request, res: Response) => {
   res.send("API IS RUNNING...");
 });
+
+app.use("/api/users/", userRoutes);
 
 app.listen(PORT, () => {
   console.log(`Server running in ${process.env.NODE_ENV} mode on port ${PORT}`);
